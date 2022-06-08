@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import * as colors from "../../colors";
 import * as fetcher from "../../fetcher";
 
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
-const queryString = require("query-string");
 
 export default class Discover extends React.Component {
   constructor(props) {
@@ -72,21 +70,23 @@ export default class Discover extends React.Component {
     } = this.state;
 
     const searchMovies = (keyword) => {
-      this.setState({ keyword: keyword });
+      if (keyword.length >= 3) {
+        this.setState({ keyword: keyword });
 
-      fetcher
-        .searchMoviesby(keyword)
-        .then((response) => {
-          const searchMovies = response.data;
+        fetcher
+          .searchMoviesby(keyword)
+          .then((response) => {
+            const searchMovies = response.data;
 
-          this.setState({
-            totalCount: searchMovies.total_results,
-            results: searchMovies.results,
+            this.setState({
+              totalCount: searchMovies.total_results,
+              results: searchMovies.results,
+            });
+          })
+          .catch((e) => {
+            console.log(e);
           });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      }
     };
 
     return (
@@ -122,7 +122,10 @@ export default class Discover extends React.Component {
 }
 
 const DiscoverWrapper = styled.main`
-  padding: 35px;
+  padding: 0 35px 35px;
+  @media (min-width: 768px) {
+    padding: 35px;
+  }
 `;
 
 const MovieResults = styled.div`
@@ -142,6 +145,9 @@ const MovieFilters = styled.div`
 `;
 
 const MobilePageTitle = styled.h1`
+  padding-left: 40px;
+  line-height: 26px;
+
   @media (min-width: 768px) {
     display: none;
   }
