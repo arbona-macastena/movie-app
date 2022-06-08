@@ -10,7 +10,6 @@ export default function MovieItem({ movie, genres }) {
         <img
           src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
           alt={movie.title}
-          style={{ width: "100%", height: "250px" }}
         />
       </LeftCont>
       <RightContWrapper>
@@ -42,12 +41,21 @@ const MovieItemWrapper = styled.div`
   margin: 15px 0;
   display: flex;
   gap: 20px;
+  @media (max-width: 768px) {
+    height: 200px;
+    overflow: hidden;
+  }
 `;
 
 const LeftCont = styled.div`
   display: inline-block;
   img {
     object-fit: cover;
+    width: 100%;
+    height: 100%;
+    @media (min-width: 768px) {
+      height: 250px;
+    }
   }
 `;
 
@@ -62,8 +70,11 @@ const RightCont = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 1.4;
+  font-size: 1em;
   margin: 0;
+  @media (min-width: 768px) {
+    font-size: 1.4em;
+  }
 `;
 
 const GenresWrapper = styled.div`
@@ -72,12 +83,21 @@ const GenresWrapper = styled.div`
 
 const Overview = styled.div`
   padding: 8px 0 16px 0;
+
+  @media (max-width: 768px) {
+    height: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 `;
 
 const GenresItem = styled.span`
   color: ${colors.primaryColor};
   padding-right: 4px;
 
+  @media (max-width: 768px) {
+    font-size: 0.7em;
+  }
   &:not(:last-child):after {
     content: "|";
     margin-left: 4px;

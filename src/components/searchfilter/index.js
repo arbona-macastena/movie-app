@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
-import * as colors from "../../colors";
 import ExpandableFilter from "../accordionfilter";
 import SearchBar from "../../components/searchbar";
 
@@ -18,7 +17,6 @@ export default function SearchFilters({
   const [toggleFilterIcon, setToggleFilterIcon] = useState(false);
 
   const handleFilterIcon = () => {
-    console.log("hahha");
     setToggleFilterIcon(!toggleFilterIcon);
   };
 

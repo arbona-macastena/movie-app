@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { NavLink as Link, useLocation } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 
 import * as colors from "../../colors";
 import Arrow from "../../images/arrow-icon.png";
@@ -152,6 +152,7 @@ const NavLink = styled(Link)`
 `;
 
 const HamburgerMenu = styled.div`
+  z-index: 10;
   display: flex;
   flex-direction: column;
   row-gap: 8px;
